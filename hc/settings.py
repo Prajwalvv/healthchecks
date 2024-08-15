@@ -35,10 +35,10 @@ def envint(s: str, default: str) -> int | None:
     return int(v)
 
 
-SECRET_KEY = os.getenv("SECRET_KEY", "---")
+SECRET_KEY = os.getenv("SECRET_KEY", "11111")
 METRICS_KEY = os.getenv("METRICS_KEY")
-DEBUG = envbool("DEBUG", "True")
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = ['*']
 DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "healthchecks@example.org")
 SUPPORT_EMAIL = os.getenv("SUPPORT_EMAIL")
 USE_PAYMENTS = envbool("USE_PAYMENTS", "False")
@@ -267,6 +267,7 @@ DISCORD_CLIENT_SECRET = os.getenv("DISCORD_CLIENT_SECRET")
 # LINE Notify
 LINENOTIFY_CLIENT_ID = os.getenv("LINENOTIFY_CLIENT_ID")
 LINENOTIFY_CLIENT_SECRET = os.getenv("LINENOTIFY_CLIENT_SECRET")
+django_heroku.settings(locals())
 
 # Matrix
 MATRIX_HOMESERVER = os.getenv("MATRIX_HOMESERVER")
